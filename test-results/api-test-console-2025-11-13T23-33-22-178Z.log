@@ -1,0 +1,608 @@
+[33m🔍 Verificando se a API está rodando...[0m
+[32m✅ API está respondendo![0m
+[35m🚀 Iniciando testes da API Galinheiro[0m
+[34m📍 Base URL: http://localhost:3000[0m
+[34m📄 Collection: Galinheiro API[0m
+[36m══════════════════════════════════════════════════[0m
+[33m🔍 Obtendo IDs reais do banco de dados...[0m
+[32m   ✅ Usando galinhaId real: 24daa078-87b9-452c-aa29-d3e177beba2a[0m
+[32m   ✅ Usando galpaoId real: f8e80497-9b3f-4d20-86d9-b96490a70309[0m
+[35m
+📁 Grupo: Health & Dashboard[0m
+[36m
+🔄 Executando: GET Root[0m
+[33m   GET http:/localhost:3000/[0m
+[32m   Status: 200 (2ms)[0m
+[37m   Response: Hello World![0m
+[36m
+🔄 Executando: GET Dashboard[0m
+[33m   GET http:/localhost:3000/dashboard[0m
+[32m   Status: 200 (24ms)[0m
+[37m   Response: {
+  "resumo": {
+    "galpoes": {
+      "total": 3,
+      "ativos": 3
+    },
+    "galinhas": {
+      "total": 2,
+      "quarentena": 0
+    },
+    "ninhos": {
+      "total": 0,
+      "ocupados": 0
+    },
+    "ovos": {
+      "total": 0,
+      "hoje": 0
+    }
+  },
+  "galinhasPorSaude": [
+    {
+      "saude": "Boa",
+      "total": "1"
+    },
+    {
+      "saude": "Fragilizada",
+      "total": "1"
+    }
+  ],
+  "galinhasPorGalpao": [
+    {
+      "galpao": "Galpão 3",
+      "total": "1"
+    },
+    {
+      "galpao": "Galpão 1",
+      "total": "1"
+    }
+  ],
+  "ovosPorDia": [],
+  "ultimasMedicoes": [],
+  "taxaOcupacao": [
+    {
+      "galpao": "galpão 2",
+      "capacidade": 10,
+      "ocupadas": "0",
+      "percentual": "0.00"
+    },
+    {
+      "galpao": "Galpão 1",
+      "capacidade": 10,
+      "ocupadas": "1",
+      "percentual": "10.00"
+    },
+    {
+      "galpao": "Galpão 3",
+      "capacidade": 14,
+      "ocupadas": "1",
+      "percentual": "7.14"
+    }
+  ],
+  "alertas": []
+}[0m
+[35m
+📁 Grupo: Galinhas[0m
+[36m
+🔄 Executando: Listar Galinhas[0m
+[33m   GET http:/localhost:3000/galinhas[0m
+[32m   Status: 200 (6ms)[0m
+[37m   Response: [
+  {
+    "id": "24daa078-87b9-452c-aa29-d3e177beba2a",
+    "nome": "Galinha 2",
+    "saude": "Boa",
+    "raca": "EEEEE",
+    "emQuarentena": false,
+    "local": "galpao",
+    "galpaoId": "11067ba4-c8ad-4984-ad8f-68aca027722a",
+    "ninhoId": null,
+    "data_nascimento": "2023-11-12",
+    "galpao": {
+      "id": "11067ba4-c8ad-4984-ad8f-68aca027722a",
+      "nome": "Galpão 1",
+      "capacidade_maxima_galinhas": 10,
+      "capacidade_maxima_ninhos": 10,
+      "numero_ninhos_ocupados": 0,
+      "area_m2": "200.00",
+      "tipo_piso": "terra",
+      "ventilacao": "natural",
+      "ativo": true,
+      "data_ultima_manutencao": "2025-11-13T20:32:12.777Z",
+      "observacoes": "",
+      "created_at": "2025-11-13T20:43:01.427Z",
+      "updated_at": "2025-11-13T20:43:01.427Z"
+    },
+    "ninho": null,
+    "ovos": [],
+    "created_at": "2025-11-13T22:34:17.386Z",
+    "updated_at": "2025-11-13T22:34:17.386Z"
+  },
+  {
+    "id": "283e99b6-e65d-47ec-9b7c-8c737a7093fa",
+    "nome": "Galinha 3",
+    "saude": "Fragilizada",
+    "raca": "Azulada",
+    "emQuarentena": false,
+    "local": "galpao",
+    "galpaoId": "f8e80497-9b3f-4d20-86d9-b96490a70309",
+    "ninhoId": null,
+    "data_nascimento": "2024-11-12",
+    "galpao": {
+      "id": "f8e80497-9b3f-4d20-86d9-b96490a70309",
+      "nome": "Galpão 3",
+      "capacidade_maxima_galinhas": 14,
+      "capacidade_maxima_ninhos": 17,
+      "numero_ninhos_ocupados": 0,
+      "area_m2": "200.00",
+      "tipo_piso": "terra",
+      "ventilacao": "natural",
+      "ativo": true,
+      "data_ultima_manutencao": "2025-11-13T23:22:40.645Z",
+      "observacoes": null,
+      "created_at": "2025-11-13T23:22:58.686Z",
+      "updated_at": "2025-11-13T23:22:58.686Z"
+    },
+    "ninho": null,
+    "ovos": [],
+    "created_at": "2025-11-13T23:23:21.690Z",
+    "updated_at": "2025-11-13T23:23:44.240Z"
+  }
+][0m
+[36m
+🔄 Executando: Obter Galinha[0m
+[33m   GET http:/localhost:3000/galinhas/24daa078-87b9-452c-aa29-d3e177beba2a[0m
+[32m   Status: 200 (12ms)[0m
+[37m   Response: {
+  "id": "24daa078-87b9-452c-aa29-d3e177beba2a",
+  "nome": "Galinha 2",
+  "saude": "Boa",
+  "raca": "EEEEE",
+  "emQuarentena": false,
+  "local": "galpao",
+  "galpaoId": "11067ba4-c8ad-4984-ad8f-68aca027722a",
+  "ninhoId": null,
+  "data_nascimento": "2023-11-12",
+  "galpao": {
+    "id": "11067ba4-c8ad-4984-ad8f-68aca027722a",
+    "nome": "Galpão 1",
+    "capacidade_maxima_galinhas": 10,
+    "capacidade_maxima_ninhos": 10,
+    "numero_ninhos_ocupados": 0,
+    "area_m2": "200.00",
+    "tipo_piso": "terra",
+    "ventilacao": "natural",
+    "ativo": true,
+    "data_ultima_manutencao": "2025-11-13T20:32:12.777Z",
+    "observacoes": "",
+    "created_at": "2025-11-13T20:43:01.427Z",
+    "updated_at": "2025-11-13T20:43:01.427Z"
+  },
+  "ninho": null,
+  "ovos": [],
+  "created_at": "2025-11-13T22:34:17.386Z",
+  "updated_at": "2025-11-13T22:34:17.386Z"
+}[0m
+[36m
+🔄 Executando: Criar Galinha[0m
+[33m   POST http:/localhost:3000/galinhas[0m
+[31m   ❌ Error: Request failed with status code 400[0m
+[31m   Status: 400[0m
+[31m   Response: {
+  "message": [
+    "ninhoId must be a UUID"
+  ],
+  "error": "Bad Request",
+  "statusCode": 400
+}[0m
+[36m
+🔄 Executando: Atualizar Galinha[0m
+[33m   PATCH http:/localhost:3000/galinhas/24daa078-87b9-452c-aa29-d3e177beba2a[0m
+[32m   Status: 200 (30ms)[0m
+[37m   Response: {
+  "id": "24daa078-87b9-452c-aa29-d3e177beba2a",
+  "nome": "Galinha Aurora",
+  "saude": "Fragilizada",
+  "raca": "EEEEE",
+  "emQuarentena": true,
+  "local": "quarentena",
+  "galpaoId": "11067ba4-c8ad-4984-ad8f-68aca027722a",
+  "ninhoId": null,
+  "data_nascimento": "2024-01-14",
+  "galpao": {
+    "id": "11067ba4-c8ad-4984-ad8f-68aca027722a",
+    "nome": "Galpão 1",
+    "capacidade_maxima_galinhas": 10,
+    "capacidade_maxima_ninhos": 10,
+    "numero_ninhos_ocupados": 0,
+    "area_m2": "200.00",
+    "tipo_piso": "terra",
+    "ventilacao": "natural",
+    "ativo": true,
+    "data_ultima_manutencao": "2025-11-13T20:32:12.777Z",
+    "observacoes": "",
+    "created_at": "2025-11-13T20:43:01.427Z",
+    "updated_at": "2025-11-13T20:43:01.427Z"
+  },
+  "ninho": null,
+  "ovos": [],
+  "created_at": "2025-11-13T22:34:17.386Z",
+  "updated_at": "2025-11-13T23:33:10.970Z"
+}[0m
+[36m
+🔄 Executando: Excluir Galinha[0m
+[33m   DELETE http:/localhost:3000/galinhas/24daa078-87b9-452c-aa29-d3e177beba2a[0m
+[32m   Status: 200 (10ms)[0m
+[37m   Response: {
+  "nome": "Galinha Aurora",
+  "saude": "Fragilizada",
+  "raca": "EEEEE",
+  "emQuarentena": true,
+  "local": "quarentena",
+  "galpaoId": "11067ba4-c8ad-4984-ad8f-68aca027722a",
+  "ninhoId": null,
+  "data_nascimento": "2024-01-14",
+  "galpao": {
+    "id": "11067ba4-c8ad-4984-ad8f-68aca027722a",
+    "nome": "Galpão 1",
+    "capacidade_maxima_galinhas": 10,
+    "capacidade_maxima_ninhos": 10,
+    "numero_ninhos_ocupados": 0,
+    "area_m2": "200.00",
+    "tipo_piso": "terra",
+    "ventilacao": "natural",
+    "ativo": true,
+    "data_ultima_manutencao": "2025-11-13T20:32:12.777Z",
+    "observacoes": "",
+    "created_at": "2025-11-13T20:43:01.427Z",
+    "updated_at": "2025-11-13T20:43:01.427Z"
+  },
+  "ninho": null,
+  "ovos": [],
+  "created_at": "2025-11-13T22:34:17.386Z",
+  "updated_at": "2025-11-13T23:33:10.970Z"
+}[0m
+[35m
+📁 Grupo: Galpões[0m
+[36m
+🔄 Executando: Listar Galpões[0m
+[33m   GET http:/localhost:3000/galpoes[0m
+[32m   Status: 200 (9ms)[0m
+[37m   Response: [
+  {
+    "id": "f8e80497-9b3f-4d20-86d9-b96490a70309",
+    "nome": "Galpão 3",
+    "capacidade_maxima_galinhas": 14,
+    "capacidade_maxima_ninhos": 17,
+    "numero_ninhos_ocupados": 0,
+    "area_m2": "200.00",
+    "tipo_piso": "terra",
+    "ventilacao": "natural",
+    "ativo": true,
+    "data_ultima_manutencao": "2025-11-13T23:22:40.645Z",
+    "observacoes": null,
+    "ninhos": [],
+    "medicoes": [],
+    "galinhas": [
+      {
+        "id": "283e99b6-e65d-47ec-9b7c-8c737a7093fa",
+        "nome": "Galinha 3",
+        "saude": "Fragilizada",
+        "raca": "Azulada",
+        "emQuarentena": false,
+        "local": "galpao",
+        "galpaoId": "f8e80497-9b3f-4d20-86d9-b96490a70309",
+        "ninhoId": null,
+        "data_nascimento": "2024-11-12",
+        "created_at": "2025-11-13T23:23:21.690Z",
+        "updated_at": "2025-11-13T23:23:44.240Z"
+      }
+    ],
+    "created_at": "2025-11-13T23:22:58.686Z",
+    "updated_at": "2025-11-13T23:22:58.686Z"
+  },
+  {
+    "id": "62e2dac0-55dd-47e4-a54c-17d26aac19bc",
+    "nome": "galpão 2",
+    "capacidade_maxima_galinhas": 10,
+    "capacidade_maxima_ninhos": 10,
+    "numero_ninhos_ocupados": 0,
+    "area_m2": "222.22",
+    "tipo_piso": "terra",
+    "ventilacao": "natural",
+    "ativo": true,
+    "data_ultima_manutencao": "2025-11-13T20:59:49.573Z",
+    "observacoes": "",
+    "ninhos": [],
+    "medicoes": [],
+    "galinhas": [],
+    "created_at": "2025-11-13T21:00:03.865Z",
+    "updated_at": "2025-11-13T21:00:03.865Z"
+  },
+  {
+    "id": "11067ba4-c8ad-4984-ad8f-68aca027722a",
+    "nome": "Galpão 1",
+    "capacidade_maxima_galinhas": 10,
+    "capacidade_maxima_ninhos": 10,
+    "numero_ninhos_ocupados": 0,
+    "area_m2": "200.00",
+    "tipo_piso": "terra",
+    "ventilacao": "natural",
+    "ativo": true,
+    "data_ultima_manutencao": "2025-11-13T20:32:12.777Z",
+    "observacoes": "",
+    "ninhos": [],
+    "medicoes": [],
+    "galinhas": [],
+    "created_at": "2025-11-13T20:43:01.427Z",
+    "updated_at": "2025-11-13T20:43:01.427Z"
+  }
+][0m
+[36m
+🔄 Executando: Obter Galpão[0m
+[33m   GET http:/localhost:3000/galpoes/f8e80497-9b3f-4d20-86d9-b96490a70309[0m
+[32m   Status: 200 (10ms)[0m
+[37m   Response: {
+  "id": "f8e80497-9b3f-4d20-86d9-b96490a70309",
+  "nome": "Galpão 3",
+  "capacidade_maxima_galinhas": 14,
+  "capacidade_maxima_ninhos": 17,
+  "numero_ninhos_ocupados": 0,
+  "area_m2": "200.00",
+  "tipo_piso": "terra",
+  "ventilacao": "natural",
+  "ativo": true,
+  "data_ultima_manutencao": "2025-11-13T23:22:40.645Z",
+  "observacoes": null,
+  "ninhos": [],
+  "medicoes": [],
+  "galinhas": [
+    {
+      "id": "283e99b6-e65d-47ec-9b7c-8c737a7093fa",
+      "nome": "Galinha 3",
+      "saude": "Fragilizada",
+      "raca": "Azulada",
+      "emQuarentena": false,
+      "local": "galpao",
+      "galpaoId": "f8e80497-9b3f-4d20-86d9-b96490a70309",
+      "ninhoId": null,
+      "data_nascimento": "2024-11-12",
+      "created_at": "2025-11-13T23:23:21.690Z",
+      "updated_at": "2025-11-13T23:23:44.240Z"
+    }
+  ],
+  "created_at": "2025-11-13T23:22:58.686Z",
+  "updated_at": "2025-11-13T23:22:58.686Z"
+}[0m
+[36m
+🔄 Executando: Criar Galpão[0m
+[33m   POST http:/localhost:3000/galpoes[0m
+[32m   Status: 201 (9ms)[0m
+[37m   Response: {
+  "id": "d9a3a21f-ad77-4aa3-a75a-0d5235b48a76",
+  "nome": "Galpão Principal",
+  "capacidade_maxima_galinhas": 120,
+  "capacidade_maxima_ninhos": 60,
+  "numero_ninhos_ocupados": 12,
+  "area_m2": 200,
+  "tipo_piso": "concreto",
+  "ventilacao": "natural",
+  "ativo": true,
+  "data_ultima_manutencao": "2024-10-01T00:00:00.000Z",
+  "observacoes": "Galpão com monitoramento automático",
+  "created_at": "2025-11-13T23:33:13.018Z",
+  "updated_at": "2025-11-13T23:33:13.018Z"
+}[0m
+[36m
+🔄 Executando: Atualizar Galpão[0m
+[33m   PATCH http:/localhost:3000/galpoes/f8e80497-9b3f-4d20-86d9-b96490a70309[0m
+[32m   Status: 200 (18ms)[0m
+[37m   Response: {
+  "id": "f8e80497-9b3f-4d20-86d9-b96490a70309",
+  "nome": "Galpão 3",
+  "capacidade_maxima_galinhas": 140,
+  "capacidade_maxima_ninhos": 17,
+  "numero_ninhos_ocupados": 20,
+  "area_m2": "200.00",
+  "tipo_piso": "terra",
+  "ventilacao": "natural",
+  "ativo": false,
+  "data_ultima_manutencao": "2025-11-13T23:22:40.645Z",
+  "observacoes": "Em manutenção preventiva",
+  "ninhos": [],
+  "medicoes": [],
+  "galinhas": [
+    {
+      "id": "283e99b6-e65d-47ec-9b7c-8c737a7093fa",
+      "nome": "Galinha 3",
+      "saude": "Fragilizada",
+      "raca": "Azulada",
+      "emQuarentena": false,
+      "local": "galpao",
+      "galpaoId": "f8e80497-9b3f-4d20-86d9-b96490a70309",
+      "ninhoId": null,
+      "data_nascimento": "2024-11-12",
+      "created_at": "2025-11-13T23:23:21.690Z",
+      "updated_at": "2025-11-13T23:23:44.240Z"
+    }
+  ],
+  "created_at": "2025-11-13T23:22:58.686Z",
+  "updated_at": "2025-11-13T23:33:13.535Z"
+}[0m
+[36m
+🔄 Executando: Excluir Galpão[0m
+[33m   DELETE http:/localhost:3000/galpoes/f8e80497-9b3f-4d20-86d9-b96490a70309[0m
+[32m   Status: 200 (12ms)[0m
+[37m   Response: {
+  "nome": "Galpão 3",
+  "capacidade_maxima_galinhas": 140,
+  "capacidade_maxima_ninhos": 17,
+  "numero_ninhos_ocupados": 20,
+  "area_m2": "200.00",
+  "tipo_piso": "terra",
+  "ventilacao": "natural",
+  "ativo": false,
+  "data_ultima_manutencao": "2025-11-13T23:22:40.645Z",
+  "observacoes": "Em manutenção preventiva",
+  "ninhos": [],
+  "medicoes": [],
+  "galinhas": [
+    {
+      "id": "283e99b6-e65d-47ec-9b7c-8c737a7093fa",
+      "nome": "Galinha 3",
+      "saude": "Fragilizada",
+      "raca": "Azulada",
+      "emQuarentena": false,
+      "local": "galpao",
+      "galpaoId": "f8e80497-9b3f-4d20-86d9-b96490a70309",
+      "ninhoId": null,
+      "data_nascimento": "2024-11-12",
+      "created_at": "2025-11-13T23:23:21.690Z",
+      "updated_at": "2025-11-13T23:23:44.240Z"
+    }
+  ],
+  "created_at": "2025-11-13T23:22:58.686Z",
+  "updated_at": "2025-11-13T23:33:13.535Z"
+}[0m
+[35m
+📁 Grupo: Ninhos[0m
+[36m
+🔄 Executando: Listar Ninhos[0m
+[33m   GET http:/localhost:3000/ninhos[0m
+[32m   Status: 200 (6ms)[0m
+[37m   Response: [][0m
+[36m
+🔄 Executando: Obter Ninho[0m
+[33m   GET http:/localhost:3000/ninhos/00000000-0000-0000-0000-000000000301[0m
+[31m   ❌ Error: Request failed with status code 404[0m
+[31m   Status: 404[0m
+[31m   Response: {
+  "message": "Ninho com ID 00000000-0000-0000-0000-000000000301 não encontrado",
+  "error": "Not Found",
+  "statusCode": 404
+}[0m
+[36m
+🔄 Executando: Criar Ninho[0m
+[33m   POST http:/localhost:3000/ninhos[0m
+[31m   ❌ Error: Request failed with status code 404[0m
+[31m   Status: 404[0m
+[31m   Response: {
+  "message": "Galpão não encontrado",
+  "error": "Not Found",
+  "statusCode": 404
+}[0m
+[36m
+🔄 Executando: Atualizar Ninho[0m
+[33m   PATCH http:/localhost:3000/ninhos/00000000-0000-0000-0000-000000000301[0m
+[31m   ❌ Error: Request failed with status code 404[0m
+[31m   Status: 404[0m
+[31m   Response: {
+  "message": "Ninho com ID 00000000-0000-0000-0000-000000000301 não encontrado",
+  "error": "Not Found",
+  "statusCode": 404
+}[0m
+[36m
+🔄 Executando: Excluir Ninho[0m
+[33m   DELETE http:/localhost:3000/ninhos/00000000-0000-0000-0000-000000000301[0m
+[31m   ❌ Error: Request failed with status code 404[0m
+[31m   Status: 404[0m
+[31m   Response: {
+  "message": "Ninho com ID 00000000-0000-0000-0000-000000000301 não encontrado",
+  "error": "Not Found",
+  "statusCode": 404
+}[0m
+[35m
+📁 Grupo: Ovos[0m
+[36m
+🔄 Executando: Listar Ovos[0m
+[33m   GET http:/localhost:3000/ovos[0m
+[32m   Status: 200 (6ms)[0m
+[37m   Response: [][0m
+[36m
+🔄 Executando: Obter Ovo[0m
+[33m   GET http:/localhost:3000/ovos/00000000-0000-0000-0000-000000000401[0m
+[31m   ❌ Error: Request failed with status code 404[0m
+[31m   Status: 404[0m
+[31m   Response: {
+  "message": "Ovo com ID 00000000-0000-0000-0000-000000000401 não encontrado",
+  "error": "Not Found",
+  "statusCode": 404
+}[0m
+[36m
+🔄 Executando: Criar Ovo[0m
+[33m   POST http:/localhost:3000/ovos[0m
+[31m   ❌ Error: Request failed with status code 400[0m
+[31m   Status: 400[0m
+[31m   Response: {
+  "message": [
+    "ninhoId must be a UUID"
+  ],
+  "error": "Bad Request",
+  "statusCode": 400
+}[0m
+[36m
+🔄 Executando: Atualizar Ovo[0m
+[33m   PATCH http:/localhost:3000/ovos/00000000-0000-0000-0000-000000000401[0m
+[31m   ❌ Error: Request failed with status code 404[0m
+[31m   Status: 404[0m
+[31m   Response: {
+  "message": "Ovo com ID 00000000-0000-0000-0000-000000000401 não encontrado",
+  "error": "Not Found",
+  "statusCode": 404
+}[0m
+[36m
+🔄 Executando: Excluir Ovo[0m
+[33m   DELETE http:/localhost:3000/ovos/00000000-0000-0000-0000-000000000401[0m
+[31m   ❌ Error: Request failed with status code 404[0m
+[31m   Status: 404[0m
+[31m   Response: {
+  "message": "Ovo com ID 00000000-0000-0000-0000-000000000401 não encontrado",
+  "error": "Not Found",
+  "statusCode": 404
+}[0m
+[35m
+📁 Grupo: Medições de Ambiente[0m
+[36m
+🔄 Executando: Listar Medições[0m
+[33m   GET http:/localhost:3000/medicoes-ambiente[0m
+[32m   Status: 200 (5ms)[0m
+[37m   Response: [][0m
+[36m
+🔄 Executando: Obter Medição[0m
+[33m   GET http:/localhost:3000/medicoes-ambiente/00000000-0000-0000-0000-000000000501[0m
+[31m   ❌ Error: Request failed with status code 404[0m
+[31m   Status: 404[0m
+[31m   Response: {
+  "message": "Medição com ID 00000000-0000-0000-0000-000000000501 não encontrada",
+  "error": "Not Found",
+  "statusCode": 404
+}[0m
+[36m
+🔄 Executando: Criar Medição[0m
+[33m   POST http:/localhost:3000/medicoes-ambiente[0m
+[31m   ❌ Error: Request failed with status code 500[0m
+[31m   Status: 500[0m
+[31m   Response: {
+  "statusCode": 500,
+  "message": "Internal server error"
+}[0m
+[36m
+🔄 Executando: Atualizar Medição[0m
+[33m   PATCH http:/localhost:3000/medicoes-ambiente/00000000-0000-0000-0000-000000000501[0m
+[31m   ❌ Error: Request failed with status code 404[0m
+[31m   Status: 404[0m
+[31m   Response: {
+  "message": "Medição com ID 00000000-0000-0000-0000-000000000501 não encontrada",
+  "error": "Not Found",
+  "statusCode": 404
+}[0m
+[36m
+🔄 Executando: Excluir Medição[0m
+[33m   DELETE http:/localhost:3000/medicoes-ambiente/00000000-0000-0000-0000-000000000501[0m
+[31m   ❌ Error: Request failed with status code 404[0m
+[31m   Status: 404[0m
+[31m   Response: {
+  "message": "Medição com ID 00000000-0000-0000-0000-000000000501 não encontrada",
+  "error": "Not Found",
+  "statusCode": 404
+}[0m

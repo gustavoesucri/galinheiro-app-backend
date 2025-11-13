@@ -1,0 +1,95 @@
+# Node / NestJS
+node_modules/
+dist/
+build/
+
+# Environment files (may contain secrets)
+.env
+.env.*
+!.env.example
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# TypeORM / Migrations temp files
+*.sqlite
+*.sqlite3
+*.db
+ormconfig.json
+ormconfig.js
+ormconfig.*.js
+# keep migrations in repo, but ignore TypeORM temp artifacts
+typeorm-debug.log
+
+# Coverage
+coverage/
+.nyc_output/
+
+# Test artifacts
+*.lcov
+
+# Editor / OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDEs
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# Temp / caches
+.cache/
+tmp/
+temp/
+.pnp.*
+.parcel-cache/
+.next/
+.out/
+.vite/
+
+# Build helpers / package manager artifacts
+.package-lock.json
+.yarn-integrity
+.yarn/*
+.pnpm-store/
+.pnpm-debug.log
+
+# TypeScript
+*.tsbuildinfo
+
+# ESLint / Prettier
+.eslintcache
+.prettiercache
+
+# Docker
+docker-compose.override.yml
+**/docker-compose.override.yml
+
+# Secrets and keys
+*.pem
+*.key
+*.crt
+
+# Optional local files
+local.env
+.vagrant/
+
+# OS generated swap / lock files
+*.swp
+*.swo
+*.lock
+
+# Ignore coverage reports from CI
+coverage-report/
+
+# Ignore seed/migrations local export files
+seeds/*.json
+migrations/*.sql.lock

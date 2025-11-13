@@ -1,0 +1,459 @@
+{
+  "info": {
+    "name": "Galinheiro API",
+    "_postman_id": "b70b8260-13e1-4f4b-96bf-68bcc7a5b3f0",
+    "description": "Coleção Postman com todas as rotas expostas pelo backend NestJS do Galinheiro.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "http://localhost:3000" },
+    { "key": "galinhaId", "value": "00000000-0000-0000-0000-000000000101" },
+    { "key": "galpaoId", "value": "00000000-0000-0000-0000-000000000201" },
+    { "key": "ninhoId", "value": "00000000-0000-0000-0000-000000000301" },
+    { "key": "ovoId", "value": "00000000-0000-0000-0000-000000000401" },
+    { "key": "medicaoId", "value": "00000000-0000-0000-0000-000000000501" }
+  ],
+  "item": [
+    {
+      "name": "Health & Dashboard",
+      "item": [
+        {
+          "name": "GET Root",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/",
+              "host": ["{{baseUrl}}"],
+              "path": [""]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "GET Dashboard",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/dashboard",
+              "host": ["{{baseUrl}}"],
+              "path": ["dashboard"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Galinhas",
+      "item": [
+        {
+          "name": "Listar Galinhas",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/galinhas",
+              "host": ["{{baseUrl}}"],
+              "path": ["galinhas"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Obter Galinha",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/galinhas/{{galinhaId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["galinhas", "{{galinhaId}}"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Criar Galinha",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nome\": \"Galinha Aurora\",\n  \"saude\": \"Boa\",\n  \"raca\": \"Caipira\",\n  \"emQuarentena\": false,\n  \"local\": \"galpao\",\n  \"galpaoId\": \"{{galpaoId}}\",\n  \"ninhoId\": \"{{ninhoId}}\",\n  \"data_nascimento\": \"2024-01-15T00:00:00.000Z\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/galinhas",
+              "host": ["{{baseUrl}}"],
+              "path": ["galinhas"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Atualizar Galinha",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nome\": \"Galinha Aurora\",\n  \"saude\": \"Fragilizada\",\n  \"emQuarentena\": true,\n  \"local\": \"quarentena\",\n  \"data_nascimento\": \"2024-01-15T00:00:00.000Z\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/galinhas/{{galinhaId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["galinhas", "{{galinhaId}}"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Excluir Galinha",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/galinhas/{{galinhaId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["galinhas", "{{galinhaId}}"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Galpões",
+      "item": [
+        {
+          "name": "Listar Galpões",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/galpoes",
+              "host": ["{{baseUrl}}"],
+              "path": ["galpoes"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Obter Galpão",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/galpoes/{{galpaoId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["galpoes", "{{galpaoId}}"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Criar Galpão",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nome\": \"Galpão Principal\",\n  \"capacidade_maxima_galinhas\": 120,\n  \"capacidade_maxima_ninhos\": 60,\n  \"numero_ninhos_ocupados\": 12,\n  \"area_m2\": 200,\n  \"tipo_piso\": \"concreto\",\n  \"ventilacao\": \"natural\",\n  \"ativo\": true,\n  \"data_ultima_manutencao\": \"2024-10-01T00:00:00.000Z\",\n  \"observacoes\": \"Galpão com monitoramento automático\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/galpoes",
+              "host": ["{{baseUrl}}"],
+              "path": ["galpoes"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Atualizar Galpão",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"capacidade_maxima_galinhas\": 140,\n  \"numero_ninhos_ocupados\": 20,\n  \"ativo\": false,\n  \"observacoes\": \"Em manutenção preventiva\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/galpoes/{{galpaoId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["galpoes", "{{galpaoId}}"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Excluir Galpão",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/galpoes/{{galpaoId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["galpoes", "{{galpaoId}}"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Ninhos",
+      "item": [
+        {
+          "name": "Listar Ninhos",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/ninhos",
+              "host": ["{{baseUrl}}"],
+              "path": ["ninhos"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Obter Ninho",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/ninhos/{{ninhoId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["ninhos", "{{ninhoId}}"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Criar Ninho",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"identificacao\": \"Ninho A-01\",\n  \"tipo_material\": \"Palha\",\n  \"galpaoId\": \"{{galpaoId}}\",\n  \"ocupado\": false,\n  \"ultima_limpeza\": \"2024-11-01T00:00:00.000Z\",\n  \"galinhaId\": \"{{galinhaId}}\",\n  \"observacoes\": \"Requer inspeção semanal\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/ninhos",
+              "host": ["{{baseUrl}}"],
+              "path": ["ninhos"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Atualizar Ninho",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"ocupado\": true,\n  \"galinhaId\": \"{{galinhaId}}\",\n  \"observacoes\": \"Agora com cama de serragem nova\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/ninhos/{{ninhoId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["ninhos", "{{ninhoId}}"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Excluir Ninho",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/ninhos/{{ninhoId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["ninhos", "{{ninhoId}}"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Ovos",
+      "item": [
+        {
+          "name": "Listar Ovos",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/ovos",
+              "host": ["{{baseUrl}}"],
+              "path": ["ovos"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Obter Ovo",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/ovos/{{ovoId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["ovos", "{{ovoId}}"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Criar Ovo",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": \"2024-11-13T10:30:00.000Z\",\n  \"galinhaId\": \"{{galinhaId}}\",\n  \"ninhoId\": \"{{ninhoId}}\",\n  \"tamanho\": \"Grande\",\n  \"cor\": \"Branco\",\n  \"qualidade\": \"Boa\",\n  \"observacoes\": \"Sem manchas\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/ovos",
+              "host": ["{{baseUrl}}"],
+              "path": ["ovos"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Atualizar Ovo",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"tamanho\": \"Extra\",\n  \"qualidade\": \"Defeituoso\",\n  \"observacoes\": \"Casca rachada\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/ovos/{{ovoId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["ovos", "{{ovoId}}"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Excluir Ovo",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/ovos/{{ovoId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["ovos", "{{ovoId}}"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Medições de Ambiente",
+      "item": [
+        {
+          "name": "Listar Medições",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/medicoes-ambiente",
+              "host": ["{{baseUrl}}"],
+              "path": ["medicoes-ambiente"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Obter Medição",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/medicoes-ambiente/{{medicaoId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["medicoes-ambiente", "{{medicaoId}}"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Criar Medição",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"galpaoId\": \"{{galpaoId}}\",\n  \"temperatura\": 28.5,\n  \"umidade\": 62,\n  \"luminosidade\": 450,\n  \"usa_ventilacao\": true,\n  \"ventilacao_ativa\": true,\n  \"data_medicao\": \"2024-11-13T12:00:00.000Z\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/medicoes-ambiente",
+              "host": ["{{baseUrl}}"],
+              "path": ["medicoes-ambiente"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Atualizar Medição",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"temperatura\": 30,\n  \"ventilacao_ativa\": false\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/medicoes-ambiente/{{medicaoId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["medicoes-ambiente", "{{medicaoId}}"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Excluir Medição",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/medicoes-ambiente/{{medicaoId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["medicoes-ambiente", "{{medicaoId}}"]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}

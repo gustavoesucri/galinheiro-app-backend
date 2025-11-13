@@ -1,5 +1,6 @@
 import { NestFactory } from '@nestjs/core';
 import { ValidationPipe } from '@nestjs/common';
+import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { AppModule } from './app.module';
 
 async function bootstrap() {
@@ -24,7 +25,21 @@ async function bootstrap() {
     credentials: true,
   });
 
+  const swaggerConfig = new DocumentBuilder()
+    .setTitle('Galinheiro API')
+    .setDescription('Documentação oficial do backend do app Galinheiro.')
+    .setVersion('1.0.0')
+    .build();
+
+  const document = SwaggerModule.createDocument(app, swaggerConfig);
+  SwaggerModule.setup('docs', app, document, {
+    swaggerOptions: {
+      persistAuthorization: true,
+    },
+  });
+
   await app.listen(process.env.PORT ?? 3000);
   console.log(`🚀 Aplicação rodando em: http://localhost:${process.env.PORT ?? 3000}`);
+  console.log(`📘 Swagger disponível em: http://localhost:${process.env.PORT ?? 3000}/docs`);
 }
 bootstrap();

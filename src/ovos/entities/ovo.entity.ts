@@ -16,13 +16,13 @@ export class Ovo {
   @Column({ type: 'uuid', nullable: true })
   ninhoId: string;
 
-  @Column({ type: 'enum', enum: ['Pequeno', 'Médio', 'Grande'] })
+  @Column({ type: 'enum', enum: ['Pequeno', 'Médio', 'Grande', 'Extra'] })
   tamanho: string;
 
-  @Column({ type: 'enum', enum: ['Branco', 'Marrom', 'Verde'] })
+  @Column({ type: 'enum', enum: ['Branco', 'Marrom', 'Azul', 'Verde'] })
   cor: string;
 
-  @Column({ type: 'enum', enum: ['Boa', 'Rachado', 'Sujo'] })
+  @Column({ type: 'enum', enum: ['Boa', 'Quebrado', 'Defeituoso'] })
   qualidade: string;
 
   @Column({ type: 'text', nullable: true })

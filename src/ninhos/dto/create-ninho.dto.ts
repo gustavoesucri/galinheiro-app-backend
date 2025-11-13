@@ -8,13 +8,14 @@ import {
   MaxLength,
 } from 'class-validator';
 import { Type } from 'class-transformer';
+import { EmptyToNull } from '../../common/transformers/empty-to-null.transformer';
 
 export class CreateNinhoDto {
   @IsString()
   @MaxLength(100)
   identificacao: string;
 
-  @IsEnum(['madeira', 'plástico', 'palha'])
+  @IsEnum(['Palha', 'Serragem', 'Plástico'])
   tipo_material: string;
 
   @IsUUID()
@@ -24,16 +25,19 @@ export class CreateNinhoDto {
   @IsOptional()
   ocupado?: boolean;
 
+  @EmptyToNull()
+  @IsOptional()
   @IsDate()
   @Type(() => Date)
-  @IsOptional()
   ultima_limpeza?: Date;
 
-  @IsUUID()
+  @EmptyToNull({ trim: true })
   @IsOptional()
+  @IsUUID()
   galinhaId?: string;
 
-  @IsString()
+  @EmptyToNull()
   @IsOptional()
+  @IsString()
   observacoes?: string;
 }

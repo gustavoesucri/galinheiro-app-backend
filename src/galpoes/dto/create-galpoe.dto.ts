@@ -11,6 +11,7 @@ import {
   MaxLength,
 } from 'class-validator';
 import { Type } from 'class-transformer';
+import { EmptyToNull } from '../../common/transformers/empty-to-null.transformer';
 
 export class CreateGalpoeDto {
   @IsString()
@@ -48,7 +49,8 @@ export class CreateGalpoeDto {
   @Type(() => Date)
   data_ultima_manutencao: Date;
 
-  @IsString()
+  @EmptyToNull()
   @IsOptional()
+  @IsString()
   observacoes?: string;
 }

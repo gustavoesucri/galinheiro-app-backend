@@ -7,30 +7,34 @@ import {
   MaxLength,
 } from 'class-validator';
 import { Type } from 'class-transformer';
+import { EmptyToNull } from '../../common/transformers/empty-to-null.transformer';
 
 export class CreateOvoDto {
   @IsDate()
   @Type(() => Date)
   data: Date;
 
-  @IsUUID()
+  @EmptyToNull({ trim: true })
   @IsOptional()
+  @IsUUID()
   galinhaId?: string;
 
-  @IsUUID()
+  @EmptyToNull({ trim: true })
   @IsOptional()
+  @IsUUID()
   ninhoId?: string;
 
-  @IsEnum(['Pequeno', 'Médio', 'Grande'])
+  @IsEnum(['Pequeno', 'Médio', 'Grande', 'Extra'])
   tamanho: string;
 
-  @IsEnum(['Branco', 'Marrom', 'Verde'])
+  @IsEnum(['Branco', 'Marrom', 'Azul', 'Verde'])
   cor: string;
 
-  @IsEnum(['Boa', 'Rachado', 'Sujo'])
+  @IsEnum(['Boa', 'Quebrado', 'Defeituoso'])
   qualidade: string;
 
-  @IsString()
+  @EmptyToNull()
   @IsOptional()
+  @IsString()
   observacoes?: string;
 }

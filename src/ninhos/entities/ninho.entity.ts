@@ -11,7 +11,7 @@ export class Ninho {
   @Column({ length: 100 })
   identificacao: string;
 
-  @Column({ type: 'enum', enum: ['madeira', 'plástico', 'palha'] })
+  @Column({ type: 'enum', enum: ['Palha', 'Serragem', 'Plástico'] })
   tipo_material: string;
 
   @Column({ type: 'uuid' })

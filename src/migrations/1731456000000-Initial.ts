@@ -47,7 +47,7 @@ export class Initial1731456000000 implements MigrationInterface {
       CREATE TABLE ninhos (
         id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
         identificacao VARCHAR(100) NOT NULL,
-        tipo_material VARCHAR(20) NOT NULL CHECK (tipo_material IN ('madeira', 'plástico', 'palha')),
+  tipo_material VARCHAR(20) NOT NULL CHECK (tipo_material IN ('Palha', 'Serragem', 'Plástico')),
         galpaoId UUID NOT NULL,
         ocupado BOOLEAN DEFAULT false,
         ultima_limpeza TIMESTAMP,
@@ -66,9 +66,9 @@ export class Initial1731456000000 implements MigrationInterface {
         data DATE NOT NULL,
         galinhaId UUID,
         ninhoId UUID,
-        tamanho VARCHAR(20) NOT NULL CHECK (tamanho IN ('Pequeno', 'Médio', 'Grande')),
-        cor VARCHAR(20) NOT NULL CHECK (cor IN ('Branco', 'Marrom', 'Verde')),
-        qualidade VARCHAR(20) NOT NULL CHECK (qualidade IN ('Boa', 'Rachado', 'Sujo')),
+  tamanho VARCHAR(20) NOT NULL CHECK (tamanho IN ('Pequeno', 'Médio', 'Grande', 'Extra')),
+  cor VARCHAR(20) NOT NULL CHECK (cor IN ('Branco', 'Marrom', 'Azul', 'Verde')),
+  qualidade VARCHAR(20) NOT NULL CHECK (qualidade IN ('Boa', 'Quebrado', 'Defeituoso')),
         observacoes TEXT,
         created_at TIMESTAMP DEFAULT NOW(),
         updated_at TIMESTAMP DEFAULT NOW(),
@@ -112,7 +112,7 @@ export class Initial1731456000000 implements MigrationInterface {
       INSERT INTO ninhos (identificacao, tipo_material, galpaoId, ocupado)
       SELECT 
         CONCAT('Ninho-', (ROW_NUMBER() OVER ())),
-        'madeira',
+  'Palha',
         id,
         false
       FROM galpoes

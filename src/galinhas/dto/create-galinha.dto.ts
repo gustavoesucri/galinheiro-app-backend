@@ -8,6 +8,7 @@ import {
   MaxLength,
 } from 'class-validator';
 import { Type } from 'class-transformer';
+import { EmptyToNull } from '../../common/transformers/empty-to-null.transformer';
 
 export class CreateGalinhaDto {
   @IsString()
@@ -17,9 +18,10 @@ export class CreateGalinhaDto {
   @IsEnum(['Boa', 'Fragilizada', 'Adoecida'])
   saude: string;
 
+  @EmptyToNull()
+  @IsOptional()
   @IsString()
   @MaxLength(100)
-  @IsOptional()
   raca?: string;
 
   @IsBoolean()
@@ -29,12 +31,14 @@ export class CreateGalinhaDto {
   @IsEnum(['galpao', 'campo', 'quarentena'])
   local: string;
 
-  @IsUUID()
+  @EmptyToNull({ trim: true })
   @IsOptional()
+  @IsUUID()
   galpaoId?: string;
 
-  @IsUUID()
+  @EmptyToNull({ trim: true })
   @IsOptional()
+  @IsUUID()
   ninhoId?: string;
 
   @IsDate()

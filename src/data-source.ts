@@ -12,7 +12,7 @@ export const dataSourceOptions: DataSourceOptions = {
   database: process.env.DATABASE_NAME || 'galinheiro_db',
   entities: ['dist/**/*.entity.js'],
   migrations: ['dist/migrations/*.js'],
-  synchronize: false, // Nunca usar true em produção
+  synchronize: true, // Nunca usar true em produção
   logging: true,
 };
 

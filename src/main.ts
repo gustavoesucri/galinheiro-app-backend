@@ -2,6 +2,8 @@ import { NestFactory } from '@nestjs/core';
 import { ValidationPipe } from '@nestjs/common';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { AppModule } from './app.module';
+import { requestCaptureMiddleware } from './common/middleware/request-capture.middleware';
+import { ResponseCaptureInterceptor } from './common/interceptors/response-capture.interceptor';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -37,6 +39,12 @@ async function bootstrap() {
       persistAuthorization: true,
     },
   });
+
+  // Captura requisições JSON do front e salva em arquivos (captured/front)
+  app.use(requestCaptureMiddleware);
+
+  // Interceptor global para capturar respostas e salvar em arquivos (captured/back)
+  app.useGlobalInterceptors(new ResponseCaptureInterceptor());
 
   await app.listen(process.env.PORT ?? 3000);
   console.log(`🚀 Aplicação rodando em: http://localhost:${process.env.PORT ?? 3000}`);

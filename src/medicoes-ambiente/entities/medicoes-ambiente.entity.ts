@@ -1,4 +1,5 @@
 import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn, CreateDateColumn, UpdateDateColumn } from 'typeorm';
+import { Exclude } from 'class-transformer';
 import { Galpao } from '../../galpoes/entities/galpoes.entity';
 
 @Entity('medicoes_ambiente')
@@ -31,9 +32,11 @@ export class MedicoesAmbiente {
   @JoinColumn({ name: 'galpaoId' })
   galpao: Galpao;
 
+  @Exclude()
   @CreateDateColumn()
   created_at: Date;
 
+  @Exclude()
   @UpdateDateColumn()
   updated_at: Date;
 }

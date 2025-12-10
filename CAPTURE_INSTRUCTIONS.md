@@ -8,18 +8,20 @@ Este documento descreve como funciona o mecanismo de captura de requisições (d
 
 ## O que foi adicionado
 
-1. Middleware que salva os corpos JSON enviados pelo frontend em arquivos.
+1. **Middleware que salva os corpos JSON enviados pelo frontend em arquivos.**
    - Arquivo: `src/common/middleware/request-capture.middleware.ts`
    - Captura métodos: `POST`, `PUT`, `PATCH`, `DELETE` (quando `Content-Type: application/json`).
    - Salva um arquivo por requisição em `captured/front/`.
+   - **Importante**: Salva apenas o `body` (dados enviados pelo app frontend), sem headers desnecessários.
 
-2. Interceptor global que salva o corpo de resposta em arquivos.
+2. **Interceptor global que salva o corpo de resposta em arquivos.**
    - Arquivo: `src/common/interceptors/response-capture.interceptor.ts`
    - Salva um arquivo por resposta em `captured/back/`.
+   - Contém statusCode, duração da requisição e o objeto completo retornado pelo backend.
 
-3. Registro no `main.ts` para habilitar os dois componentes.
-   - `app.use(requestCaptureMiddleware);`
-   - `app.useGlobalInterceptors(new ResponseCaptureInterceptor());`
+3. **Registro automático:**
+   - O middleware é aplicado via `AppModule.configure()` para todas as rotas (`*`).
+   - O interceptor é registrado em `main.ts` com `app.useGlobalInterceptors()`.
 
 ---
 
@@ -44,13 +46,22 @@ Exemplo de arquivo de requisição (`captured/front/...`):
 
 ```json
 {
-  "timestamp": "2025-11-13T12:34:56.789Z",
+  "timestamp": "2025-12-10T18:18:06.828Z",
   "method": "POST",
   "path": "/galinhas",
-  "headers": { "content-type": "application/json", ... },
-  "body": { "nome": "Galinha Teste", "idade": 2 }
+  "body": {
+    "nome": "Joana",
+    "saude": "Boa",
+    "raca": "Azul",
+    "emQuarentena": false,
+    "local": "galpao",
+    "galpaoId": "11067ba4-c8ad-4984-ad8f-68aca027722a",
+    "data_nascimento": "2024-12-10"
+  }
 }
 ```
+
+**Nota**: Este é o JSON que o app frontend enviou (antes de ser processado pelo backend). Não contém `id` nem `created_at`/`updated_at`, pois esses campos são gerados pelo backend.
 
 Exemplo de arquivo de resposta (`captured/back/...`):
 

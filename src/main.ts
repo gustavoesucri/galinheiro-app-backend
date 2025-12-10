@@ -1,8 +1,7 @@
-import { NestFactory } from '@nestjs/core';
-import { ValidationPipe } from '@nestjs/common';
+import { NestFactory, Reflector } from '@nestjs/core';
+import { ValidationPipe, ClassSerializerInterceptor } from '@nestjs/common';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { AppModule } from './app.module';
-import { requestCaptureMiddleware } from './common/middleware/request-capture.middleware';
 import { ResponseCaptureInterceptor } from './common/interceptors/response-capture.interceptor';
 
 async function bootstrap() {
@@ -40,8 +39,8 @@ async function bootstrap() {
     },
   });
 
-  // Captura requisições JSON do front e salva em arquivos (captured/front)
-  app.use(requestCaptureMiddleware);
+  // ClassSerializerInterceptor para respeitar @Exclude() das entidades
+  app.useGlobalInterceptors(new ClassSerializerInterceptor(app.get(Reflector)));
 
   // Interceptor global para capturar respostas e salvar em arquivos (captured/back)
   app.useGlobalInterceptors(new ResponseCaptureInterceptor());

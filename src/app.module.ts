@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { Module, NestModule, MiddlewareConsumer } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
 import { AppController } from './app.controller';
@@ -15,6 +15,7 @@ import { Galinha } from './galinhas/entities/galinha.entity';
 import { Ninho } from './ninhos/entities/ninho.entity';
 import { Ovo } from './ovos/entities/ovo.entity';
 import { MedicoesAmbiente } from './medicoes-ambiente/entities/medicoes-ambiente.entity';
+import { RequestCaptureMiddleware } from './common/middleware/request-capture.middleware';
 
 @Module({
   imports: [
@@ -32,4 +33,8 @@ import { MedicoesAmbiente } from './medicoes-ambiente/entities/medicoes-ambiente
   controllers: [AppController, DashboardController],
   providers: [AppService],
 })
-export class AppModule {}
+export class AppModule implements NestModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer.apply(RequestCaptureMiddleware).forRoutes('*');
+  }
+}

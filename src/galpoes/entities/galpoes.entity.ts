@@ -1,4 +1,5 @@
 import { Entity, Column, PrimaryGeneratedColumn, OneToMany, CreateDateColumn, UpdateDateColumn } from 'typeorm';
+import { Exclude } from 'class-transformer';
 import { Ninho } from '../../ninhos/entities/ninho.entity';
 import { MedicoesAmbiente } from '../../medicoes-ambiente/entities/medicoes-ambiente.entity';
 import { Galinha } from '../../galinhas/entities/galinha.entity';
@@ -47,9 +48,11 @@ export class Galpao {
   @OneToMany(() => Galinha, (galinha) => galinha.galpao)
   galinhas: Galinha[];
 
+  @Exclude()
   @CreateDateColumn()
   created_at: Date;
 
+  @Exclude()
   @UpdateDateColumn()
   updated_at: Date;
 }

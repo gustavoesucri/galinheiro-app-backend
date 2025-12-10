@@ -8,6 +8,32 @@
 - Entidades completas com relacionamentos
 - Configuração do TypeORM iniciada
 - .env configurado
+- Swagger com exemplos implementado
+- Captura de requisições/respostas (middleware + interceptor)
+- Campos `created_at` e `updated_at` excluídos das respostas
+
+### 📋 TODO - MELHORIAS PENDENTES
+
+#### 🔥 Alta Prioridade
+- [ ] **Implementar paginação nos endpoints de listagem (lembrar de aplicar também na UI do frontend)**
+  - Adicionar query params: `page`, `limit`, `offset`
+  - Retornar metadados: `{ data: [], meta: { total, page, limit, pages } }`
+  - Endpoints afetados: GET `/galinhas`, `/galpoes`, `/ninhos`, `/ovos`, `/medicoes-ambiente`
+  - Backend: usar TypeORM `.take()` e `.skip()`
+  - Frontend: adaptar `resourceFactory.js` para aceitar params de paginação
+
+#### 🎯 Média Prioridade
+- [ ] Implementar cache (AsyncStorage no frontend)
+- [ ] React.memo nos componentes de Card
+- [ ] Debounce nos filtros de busca
+- [ ] Otimizar imagens (thumbnails)
+- [ ] Autenticação JWT (se necessário para o projeto)
+
+#### 💡 Baixa Prioridade
+- [ ] Busca avançada com filtros por múltiplos campos
+- [ ] Endpoint de estatísticas avançadas no dashboard
+- [ ] Testes E2E automatizados
+- [ ] Logger personalizado estruturado
 
 ### ❌ FALTA FAZER (PRIORIDADE PARA NOTA 10)
 

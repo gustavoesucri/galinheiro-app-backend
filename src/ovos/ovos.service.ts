@@ -64,7 +64,8 @@ export class OvosService {
     }
 
     const ovo = this.ovoRepository.create(createOvoDto);
-    return this.ovoRepository.save(ovo);
+    const ovoSalvo = await this.ovoRepository.save(ovo);
+    return this.findOne(ovoSalvo.id);
   }
 
   async findAll() {

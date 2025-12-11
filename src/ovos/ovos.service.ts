@@ -49,8 +49,9 @@ export class OvosService {
       });
 
       if (galinha) {
+        const dataNascimento = new Date(galinha.data_nascimento);
         const idadeEmDias = Math.floor(
-          (createOvoDto.data.getTime() - galinha.data_nascimento.getTime()) /
+          (createOvoDto.data.getTime() - dataNascimento.getTime()) /
             (1000 * 60 * 60 * 24),
         );
 
@@ -87,8 +88,11 @@ export class OvosService {
     const ovo = await this.findOne(id);
 
     // RN-014: Data de coleta é imutável
-    if (updateOvoDto.data && updateOvoDto.data.getTime() !== ovo.data.getTime()) {
-      throw new BadRequestException('Data de coleta não pode ser alterada');
+    if (updateOvoDto.data) {
+      const dataOvoExistente = new Date(ovo.data);
+      if (updateOvoDto.data.getTime() !== dataOvoExistente.getTime()) {
+        throw new BadRequestException('Data de coleta não pode ser alterada');
+      }
     }
 
     // RN-013: Data de coleta não pode ser futura

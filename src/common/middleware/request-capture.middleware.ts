@@ -14,14 +14,14 @@ export class RequestCaptureMiddleware implements NestMiddleware {
       if (methods.includes(req.method) && isJson && req.body) {
         const baseDir = path.resolve(process.cwd(), 'captured', 'front');
         fs.mkdirSync(baseDir, { recursive: true });
-        const safePath = (req.path || 'root').replace(/\//g, '_').replace(/^_/, '');
+        const safePath = (req.originalUrl || req.path || 'root').replace(/\//g, '_').replace(/^_/, '');
         const filename = `${Date.now()}-${req.method}-${safePath}-${Math.random().toString(36).slice(2, 8)}.json`;
         const filePath = path.join(baseDir, filename);
 
         const payload = {
           timestamp: new Date().toISOString(),
           method: req.method,
-          path: req.path,
+          path: req.originalUrl || req.path,
           body: req.body,
         };
 

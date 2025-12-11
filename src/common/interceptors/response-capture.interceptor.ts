@@ -13,6 +13,11 @@ export class ResponseCaptureInterceptor implements NestInterceptor {
 
     return next.handle().pipe(
       tap((responseBody) => {
+        // Não capturar GET requests
+        if (req.method === 'GET') {
+          return;
+        }
+        
         try {
           const baseDir = path.resolve(process.cwd(), 'captured', 'back');
           fs.mkdirSync(baseDir, { recursive: true });

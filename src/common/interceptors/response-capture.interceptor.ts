@@ -3,6 +3,8 @@ import { Observable, tap } from 'rxjs';
 import * as fs from 'fs';
 import * as path from 'path';
 
+const CAPTURAR_RESPOSTAS = true; // Mude para false para desabilitar captura de respostas
+
 @Injectable()
 export class ResponseCaptureInterceptor implements NestInterceptor {
   intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
@@ -13,8 +15,8 @@ export class ResponseCaptureInterceptor implements NestInterceptor {
 
     return next.handle().pipe(
       tap((responseBody) => {
-        // Não capturar GET requests
-        if (req.method === 'GET') {
+        // Não capturar se desabilitado ou GET requests
+        if (!CAPTURAR_RESPOSTAS || req.method === 'GET') {
           return;
         }
         

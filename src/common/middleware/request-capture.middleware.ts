@@ -3,6 +3,8 @@ import { Request, Response, NextFunction } from 'express';
 import * as fs from 'fs';
 import * as path from 'path';
 
+const CAPTURAR_REQUESTS = true; // Mude para false para desabilitar captura de requests
+
 @Injectable()
 export class RequestCaptureMiddleware implements NestMiddleware {
   use(req: Request, res: Response, next: NextFunction) {
@@ -11,7 +13,7 @@ export class RequestCaptureMiddleware implements NestMiddleware {
       const contentType = req.headers['content-type'] || '';
       const isJson = typeof req.is === 'function' ? req.is('application/json') : contentType.includes('application/json');
 
-      if (methods.includes(req.method) && isJson && req.body) {
+      if (CAPTURAR_REQUESTS && methods.includes(req.method) && isJson && req.body) {
         const baseDir = path.resolve(process.cwd(), 'captured', 'front');
         fs.mkdirSync(baseDir, { recursive: true });
         const safePath = (req.originalUrl || req.path || 'root').replace(/\//g, '_').replace(/^_/, '');
